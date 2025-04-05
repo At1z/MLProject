@@ -15,8 +15,8 @@ for file in os.listdir(path):
 print(csv_file)
 if csv_file:
     df = pd.read_csv(csv_file, encoding='ISO-8859-1')
-    for idx, row in df.iterrows():
-        print(f"Q{idx + 1}: {row['Questions']}\nA{idx + 1}: {row['Answers']}\n{'-' * 80}")
+    # for idx, row in df.iterrows():
+    #     print(f"Q{idx + 1}: {row['Questions']}\nA{idx + 1}: {row['Answers']}\n{'-' * 80}")
 else:
     print("❌ No CSV file found in the directory:", path)
 

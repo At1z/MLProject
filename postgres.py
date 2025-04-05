@@ -6,7 +6,6 @@ import psycopg2
 path = kagglehub.dataset_download("williamalabi/python-faq-chatgpt-gemini")
 print("Path to dataset files:", path)
 
-# Find the CSV file in the directory
 csv_file = None
 for file in os.listdir(path):
     if file.endswith(".csv"):

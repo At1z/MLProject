@@ -5,25 +5,30 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.vectorstores import PGVector
 
 COLLECTION_NAME = "doc_index"
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "thenlper/gte-large" # - Medium fast / great accuracy
+#EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2" - fast / medium accuracy
+#EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5" - slow / excellent accuracy 
+#EMBEDDING_MODEL = "intfloat/e5-large-v2" - slow / excellent accuracy 
 
 load_dotenv()
 
-def main():
+def searching(prompt):
     embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
 
     db = get_embed_db(embeddings)
 
-    prompt = (
-        "What is Python good for?"
-    )
+    # prompt = (
+    #     "How can my code discover the name of an object?¶"
+    # )
 
-    print(f"Finding document matches for: '{prompt}'")
-    docs_scores = db.similarity_search_with_score(prompt)
+    # print(f"Finding document matches for: '{prompt}'")
+    docs_scores = db.similarity_search_with_score(prompt, k=3)
 
-    for doc, score in docs_scores:
-        print(f"\nSimilarity score (lower is better): {score}")
-        print(f"Document content: {doc.page_content}")
+    # for doc, score in docs_scores:
+    #     print(f"\nSimilarity score (lower is better): {score}")
+    #     print(f"Document content: {doc.page_content}")
+    print("looked for content")
+    return docs_scores
 
 
 def get_embed_db(embeddings):
@@ -56,5 +61,4 @@ def get_postgres_db(embeddings, connection_string):
     return db
 
 
-if __name__ == "__main__":
-    main()
+

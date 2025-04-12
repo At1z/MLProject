@@ -12,21 +12,22 @@ EMBEDDING_MODEL = "thenlper/gte-large" # - Medium fast / great accuracy
 
 load_dotenv()
 
-def main():
+def searching(prompt):
     embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
 
     db = get_embed_db(embeddings)
 
-    prompt = (
-        "How can my code discover the name of an object?¶"
-    )
+    # prompt = (
+    #     "How can my code discover the name of an object?¶"
+    # )
 
     print(f"Finding document matches for: '{prompt}'")
-    docs_scores = db.similarity_search_with_score(prompt)
+    docs_scores = db.similarity_search_with_score(prompt, k=3)
 
     for doc, score in docs_scores:
         print(f"\nSimilarity score (lower is better): {score}")
         print(f"Document content: {doc.page_content}")
+    return docs_scores
 
 
 def get_embed_db(embeddings):
@@ -59,5 +60,4 @@ def get_postgres_db(embeddings, connection_string):
     return db
 
 
-if __name__ == "__main__":
-    main()
+

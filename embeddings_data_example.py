@@ -7,10 +7,14 @@ from langchain_core.documents import Document
 
 import os
 
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "thenlper/gte-large" # - Medium fast / great accuracy
+#EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2" - fast / medium accuracy
+#EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5" - slow / excellent accuracy 
+#EMBEDDING_MODEL = "intfloat/e5-large-v2" - slow / excellent accuracy 
 
 
 def get_embeddings(data):
+
     tokenizer = AutoTokenizer.from_pretrained(EMBEDDING_MODEL)
     text_splitter = RecursiveCharacterTextSplitter.from_huggingface_tokenizer(
         tokenizer,
@@ -30,6 +34,7 @@ def get_embeddings(data):
     return all_docs, embeddings
 
 def create_index_postgres(docs, embeddings, connection_string):
+    print("creating with postgres")
     db = PGVector.from_documents(
         documents=docs,
         embedding=embeddings,
@@ -39,6 +44,7 @@ def create_index_postgres(docs, embeddings, connection_string):
     return db
 
 def create_index_chroma(docs, embeddings):
+    print("creating with chroma")
     chroma_persist_dir = os.getenv("CHROMA_PERSIST_DIR")
     db = Chroma.from_documents(
         documents=docs,

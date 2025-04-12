@@ -7,3 +7,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# How to run
+# ollama run DeepSeek-R1
+# python main.py

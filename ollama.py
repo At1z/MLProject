@@ -7,7 +7,7 @@ def ask_ollama(prompt, model="DeepSeek-R1"):
     docs_scores = searching(prompt)
 
     context = "\n\n".join([doc.page_content for doc, _ in docs_scores])
-
+    print("Content form Ollama: ", context)
     chat_history = [
         {"role": "system", "content": "You are a helpful chatbot. Try to answer in few sentences. Use the following information to answer the user's questions. These documents contain the knowledge you need to assist the user:"},
         {"role": "system", "content": f"Contextual documents:\n{context}"},

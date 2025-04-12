@@ -21,12 +21,13 @@ def searching(prompt):
     #     "How can my code discover the name of an object?¶"
     # )
 
-    print(f"Finding document matches for: '{prompt}'")
+    # print(f"Finding document matches for: '{prompt}'")
     docs_scores = db.similarity_search_with_score(prompt, k=3)
 
     # for doc, score in docs_scores:
     #     print(f"\nSimilarity score (lower is better): {score}")
     #     print(f"Document content: {doc.page_content}")
+    print("looked for content")
     return docs_scores
 
 

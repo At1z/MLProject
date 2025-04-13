@@ -2,7 +2,7 @@ import psycopg2
 import os
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain_community.vectorstores import PGVector
+from langchain_postgres import PGVector
 from dotenv import load_dotenv
 
 load_dotenv()

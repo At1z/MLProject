@@ -25,8 +25,8 @@ conn = psycopg2.connect(
     dbname="faq_db",  # Nazwa bazy danych
     user="postgres",  # Użytkownik bazy danych
     password="postgres",  # Hasło do bazy danych
-    host="localhost",  # Host bazy danych
-    port="5432"        # Port, na którym działa PostgreSQL
+    host="localhost", 
+    port="5432"
 )
 
 cursor = conn.cursor()

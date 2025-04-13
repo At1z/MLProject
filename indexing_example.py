@@ -11,12 +11,9 @@ def indexing_example():
 
     print("Persisting embeddings...")
     postgres_conn = os.getenv("POSTGRES_CONNECTION")
-    chroma_persist_dir = os.getenv("CHROMA_PERSIST_DIR")
 
     if postgres_conn:
         db = create_index_postgres(docs, embeddings, postgres_conn)
-    elif chroma_persist_dir:
-        db = create_index_chroma(docs, embeddings)
     else:
         raise EnvironmentError("No vector store environment variables found.")
     print("Done.")

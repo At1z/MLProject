@@ -10,7 +10,7 @@ import json
 # gemma:7b
 
 
-def ask_ollama(prompt, model="gemma:7b"):
+def ask_ollama(prompt, model="llama3:8b"):
 
     docs_scores = searching(prompt)
 

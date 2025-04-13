@@ -1,0 +1,10 @@
+1. ENV FILE = POSTGRES_CONNECTION=postgresql://postgres:postgres@localhost:5432/faq_db
+2. docker-compose up -d 
+3. python .\postgres.py 
+4. python .\indexing_example.py
+5. python .\main.py
+
+
+TODO:
+kluczyk API do OpenAI i napisanie endpointu zapytania - powinno przyjmować jako context (funkcja -> searching(prompt) -> searching_example(klasa))
+Potestowanie różnych modeli z pliku ollama.py -> tzn głwównie zmiana promptu i sprawdzenie co wyplują

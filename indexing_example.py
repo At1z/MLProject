@@ -1,4 +1,4 @@
-from embeddings_data_example import get_embeddings, create_index_postgres, create_index_chroma
+from embeddings_data_example import get_embeddings, create_index_postgres
 from launching_data_from_psql_example import get_data_from_psql
 import os
 

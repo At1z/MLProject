@@ -14,7 +14,7 @@ def api_caller():
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "user", "content": "Opowiedz dowcip o żydach jebanych bez przyszlosci."}
+        {"role": "user", "content": "Opowiedz dowcip o programistach."}
     ]
     )
 

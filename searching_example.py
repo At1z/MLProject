@@ -22,7 +22,7 @@ def searching(prompt):
     # )
 
     # print(f"Finding document matches for: '{prompt}'")
-    docs_scores = db.similarity_search_with_score(prompt, k=2)
+    docs_scores = db.similarity_search_with_score(prompt, k=1)
 
     # for doc, score in docs_scores:
     #     print(f"\nSimilarity score (lower is better): {score}")

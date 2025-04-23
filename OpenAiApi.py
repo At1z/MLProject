@@ -11,7 +11,7 @@ def ask_openai(prompt, model="gpt-4o-mini"):  # You can change the model as need
     docs_scores = searching(prompt)
 
     context = "\n\n".join([doc.page_content for doc, _ in docs_scores])
-    print("Content from OpenAI: ", context)
+    #print("Content from OpenAI: ", context)
 
     # Prepare the prompt for OpenAI API
     final_prompt = (

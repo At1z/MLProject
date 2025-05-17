@@ -20,6 +20,7 @@ def get_embeddings(data):
         separators=["\n \n", "\n\n", "\n", " ", ""],
         chunk_size=512,
         chunk_overlap=0,
+        ## to do sprawdzić jak to lepiej zrobić
     )
 
     embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)

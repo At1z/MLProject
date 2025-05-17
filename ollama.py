@@ -1,6 +1,8 @@
 import requests
 from searching_example import searching
 import json
+from vector_comparing import vector_compare
+from check_semantic_match_openai import semantic_match_openai
 
 # Modele do testu: 
 # DeepSeek-R1 -> gubi się trochę, ale odpowiada
@@ -15,8 +17,8 @@ def ask_ollama(prompt, model="llama3:8b"):
     docs_scores = searching(prompt)
 
     context = "\n\n".join([doc.page_content for doc, _ in docs_scores])
-    print("Content from Ollama: ", context)
-    
+
+    #print("Content from Ollama: ", context)
     # #Reszta
     # chat_history = [
     #     {"role": "system", "content": "You are a helpful chatbot. Try to answer in few sentences using the following information to answer the user's questions excally like in documents. These documents contain the knowledge you need to assist the user:"},
@@ -57,8 +59,9 @@ def ask_ollama(prompt, model="llama3:8b"):
         response_text = response.text
         json_lines = [json.loads(line) for line in response_text.strip().split("\n") if line.strip()]
         reply = "".join(chunk.get("response", "") for chunk in json_lines)
-
-        return reply
+        vector_similarity = vector_compare(context,reply)
+        semantic_similarity = semantic_match_openai(context, reply)
+        return reply, vector_similarity,semantic_similarity
 
     except Exception as e:
         return f"Błąd podczas zapytania do Ollamy: {e}\nRaw response:\n{response.text}"

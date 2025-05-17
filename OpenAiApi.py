@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 from searching_example import searching
+from vector_comparing import vector_compare
 
 load_dotenv()
 
@@ -33,6 +34,8 @@ def ask_openai(prompt, model="gpt-4o-mini"):
         response = requests.post(url, headers=headers, json=payload)
         response.raise_for_status()
         reply = response.json()["choices"][0]["message"]["content"]
-        return reply
+        vector_similarity = vector_compare(context,reply)
+        return reply, vector_similarity
+    
     except Exception as e:
         return f"Error while querying OpenAI: {e}"

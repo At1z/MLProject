@@ -1,19 +1,16 @@
 import requests
-import json
 import os
 from dotenv import load_dotenv
 from searching_example import searching
 
-# Load environment variables from .env file
 load_dotenv()
 
-def ask_openai(prompt, model="gpt-4o-mini"):  # You can change the model as needed
+def ask_openai(prompt, model="gpt-4o-mini"):
     docs_scores = searching(prompt)
 
     context = "\n\n".join([doc.page_content for doc, _ in docs_scores])
     #print("Content from OpenAI: ", context)
 
-    # Prepare the prompt for OpenAI API
     final_prompt = (
         "You are a helpful assistant. Using the context below, answer the question in a few sentences.\n\n"
         f"Context:\n{context}\n\n"
@@ -21,9 +18,9 @@ def ask_openai(prompt, model="gpt-4o-mini"):  # You can change the model as need
         "Answer:"
     )
     
-    url = "https://api.openai.com/v1/chat/completions"  # OpenAI API endpoint
+    url = "https://api.openai.com/v1/chat/completions"  
     headers = {
-        "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}",  # Get the API key from environment variable
+        "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}", 
         "Content-Type": "application/json"
     }
     payload = {

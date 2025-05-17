@@ -15,8 +15,8 @@ def ask_ollama(prompt, model="llama3:8b"):
     docs_scores = searching(prompt)
 
     context = "\n\n".join([doc.page_content for doc, _ in docs_scores])
-    print("Content from Ollama: ", context)
     
+    #print("Content from Ollama: ", context)
     # #Reszta
     # chat_history = [
     #     {"role": "system", "content": "You are a helpful chatbot. Try to answer in few sentences using the following information to answer the user's questions excally like in documents. These documents contain the knowledge you need to assist the user:"},

@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from searching_example import searching
 from vector_comparing import vector_compare
 from check_semantic_match_openai import semantic_match_openai
+from bleu import bleu
+from rouge import rouge
 
 load_dotenv()
 
@@ -37,7 +39,9 @@ def ask_openai(prompt, model="gpt-4o-mini"):
         reply = response.json()["choices"][0]["message"]["content"]
         vector_similarity = vector_compare(context,reply)
         semantic_similarity = semantic_match_openai(context, reply)
-        return reply, vector_similarity,semantic_similarity
+        scoreBleu = bleu(context,reply)
+        scoreRouge = rouge(context,reply)
+        return reply, vector_similarity,semantic_similarity, scoreBleu, scoreRouge
     
     except Exception as e:
         return f"Error while querying OpenAI: {e}"

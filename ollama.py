@@ -3,6 +3,8 @@ from searching_example import searching
 import json
 from vector_comparing import vector_compare
 from check_semantic_match_openai import semantic_match_openai
+from bleu import bleu
+from rouge import rouge
 
 # Modele do testu: 
 # DeepSeek-R1 -> gubi się trochę, ale odpowiada
@@ -61,7 +63,9 @@ def ask_ollama(prompt, model="llama3:8b"):
         reply = "".join(chunk.get("response", "") for chunk in json_lines)
         vector_similarity = vector_compare(context,reply)
         semantic_similarity = semantic_match_openai(context, reply)
-        return reply, vector_similarity,semantic_similarity
+        scoreBleu = bleu(context,reply)
+        scoreRouge = rouge(context,reply)
+        return reply, vector_similarity,semantic_similarity, scoreBleu, scoreRouge
 
     except Exception as e:
         return f"Błąd podczas zapytania do Ollamy: {e}\nRaw response:\n{response.text}"

@@ -1,0 +1,11 @@
+Questions,Answers
+"What is the difference between 'is' and '==' operators in Python?","'is' checks if objects have same identity (memory location), '==' checks if objects have same value"
+"How do you handle circular imports in Python?","Use lazy imports inside functions, or move the import statement inside the function that needs it"
+"What is the @staticmethod decorator used for in Python?","It defines a method that doesn't need self parameter and doesn't have access to class attributes"
+"How does Python's garbage collection work with reference counting?","Python tracks object references and deletes objects when reference count reaches zero"
+"What's the difference between __str__ and __repr__ methods?","__str__ is for readable output for end users, __repr__ is for developers and debugging"
+"How does Python's Global Interpreter Lock (GIL) affect multithreading?","GIL allows only one thread to execute Python bytecode at a time, limiting CPU-bound parallel processing"
+"What's the purpose of the 'yield from' statement in Python generators?","It delegates the generator's iteration to a sub-generator, useful in recursive generators"
+"How do context managers work with the 'with' statement internally?","They implement __enter__ and __exit__ methods to manage resource allocation and cleanup"
+"What's the difference between *args and **kwargs in function definitions?","*args collects positional arguments into a tuple, **kwargs collects keyword arguments into a dictionary"
+"How does Python's decorator chaining order work?","Decorators are applied from bottom to top, with the bottommost decorator executing first"

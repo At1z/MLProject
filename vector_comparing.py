@@ -9,3 +9,5 @@ def vector_compare(content, answer):
     answerVector = embedding_model.embed_query(answer)
     similarity = cosine_similarity([contentVector], [answerVector])[0][0]
     return similarity
+
+# Porównywania wektorowych reprezentacji tekstów, czyli jak podobne są dwa zdania w przestrzeni semantycznej.

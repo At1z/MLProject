@@ -7,14 +7,20 @@ load_dotenv()
 def semantic_match_openai(context: str, answer: str, model="gpt-4o"):
     """
     Checks whether the given answer matches the meaning of the context using OpenAI.
-    Returns a float score from 0 to 1.
+    Returns an integer score from 1 to 5 based on the MOSE scale.
     """
     prompt = f"""
 You are a semantic evaluator.
-
 Your task is to compare a context and an answer.
 Score how well the answer matches the meaning and intent of the context.
-Respond only with a number between 0, 0.5 and 1 (1 = perfect match, 0,5 = it is to general but,  0 = no relation).
+Use the MOSE scale from 1 to 5:
+1 = completely irrelevant,
+2 = mostly irrelevant,
+3 = somewhat related but lacking detail,
+4 = mostly relevant,
+5 = perfect match.
+
+Respond only with a number from 1 to 5.
 
 Context:
 \"\"\"{context}\"\"\"
